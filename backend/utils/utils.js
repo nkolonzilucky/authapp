@@ -1,3 +1,8 @@
+const AWS = require('aws-sdk');
+AWS.config.update({region: 'us-east-1'});
+const ddb = new AWS.DynamoDB.DocumentClient();
+const myUserTable = 'myusers';
+
 function buildResponse(statusCode, body) {
   return {
     statusCode: statusCode,
