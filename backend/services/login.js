@@ -24,4 +24,10 @@ async function login(user) {
   if (!bcrypt.compareSync(password, dynamoUser.password)) {
     return buildResponse(403, {message: 'password is incorrect'});
   }
+
+  const userInfo = {
+    username: dynamoUser.username,
+    name: dynamoUser.name
+  }
+  
 }
