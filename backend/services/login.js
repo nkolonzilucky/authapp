@@ -2,6 +2,7 @@ const AWS = require('aws-sdk');
 AWS.config.update({region: 'us-east-1'});
 const buildResponse = require('../utils/utils').buildResponse;
 const getUser = require('../utils/utils').getUser;
+const generateToken = require('../utils/auth').generateToken;
 const bcrypt = require('bcryptjs');
 
 const ddb = new AWS.DynamoDB.DocumentClient();
@@ -29,5 +30,7 @@ async function login(user) {
     username: dynamoUser.username,
     name: dynamoUser.name
   }
+
+  const token = generateToken(userInfo)
   
 }
