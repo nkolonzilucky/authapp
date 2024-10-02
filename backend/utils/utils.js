@@ -9,6 +9,21 @@ function buildResponse(statusCode, body) {
   }
 }
 
+async function getUser(username) {
+    const params = {
+        TableName: myUserTable,
+        Key: {
+            username: username
+        }
+    }
+    return await ddb.get(params).promise().then(response => {
+        return response.Item;
+    }, error => {
+        console.log('There is an error: ', error)
+    })
+}
+
 module.exports = {
-  buildResponse
+  buildResponse,
+  getUser
 }
