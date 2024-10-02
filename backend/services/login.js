@@ -41,3 +41,5 @@ async function login(user) {
   return buildResponse(200, response);
   
 }
+
+module.exports.login = login;
