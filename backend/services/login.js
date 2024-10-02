@@ -31,6 +31,13 @@ async function login(user) {
     name: dynamoUser.name
   }
 
-  const token = generateToken(userInfo)
+  const token = generateToken(userInfo);
+
+  const response = {
+    user: userInfo,
+    token: token
+  }
+
+  return buildResponse(200, response);
   
 }
