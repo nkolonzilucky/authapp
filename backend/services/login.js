@@ -7,8 +7,10 @@ const bcrypt = require('bcryptjs');
 const ddb = new AWS.DynamoDB.DocumentClient();
 const myUserTable = 'myusers';
 
+
 async function login(user) {
-  if(!user || !username || !password) {
+
+  if(!user || !user.username || !user.password) {
     return buildResponse(401, {message: 'username and password are required'})
   }
   const username = user.username;
