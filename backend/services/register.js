@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
 AWS.config.update({region: 'us-east-1'});
 const buildResponse = require('../utils/utils').buildResponse;
+const getUser = require('../utils/utils').getUser;
 const bcrypt = require('bcryptjs');
 
 const ddb = new AWS.DynamoDB.DocumentClient();
@@ -36,19 +37,6 @@ async function register(userInfo) {
     return buildResponse(200, {username: username});
 }
 
-async function getUser(username) {
-    const params = {
-        TableName: myUserTable,
-        Key: {
-            username: username
-        }
-    }
-    return await ddb.get(params).promise().then(response => {
-        return response.Item;
-    }, error => {
-        console.log('There is an error: ', error)
-    })
-}
 
 async function saveUser(user) {
     const params = {
