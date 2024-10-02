@@ -21,7 +21,8 @@ export const handler = async (event) => {
         response = await registerService.register(registerBody);
         break;  
     case event.httpMethod === 'POST' && event.path === loginPath:
-        response = buildResponse(200);
+        const loginBody = JSON.stringify(event.body);
+        response = await loginService.login(loginBody);
         break;
     case event.httpMethod === 'POST' && event.path === verifyPath:
         response = buildResponse(200);
