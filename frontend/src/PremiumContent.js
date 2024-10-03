@@ -1,7 +1,7 @@
 import React from "react";
 import { getUser, resetUserSession } from '/services/authServices';
 
-function PremiumContent() {
+function PremiumContent(props) {
     const user = getUser();
     const name = user !== 'undefined' && user ? user.name: '';
     const logoutHandler = () => {
