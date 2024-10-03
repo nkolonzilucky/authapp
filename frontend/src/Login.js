@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 const loginURL = '';
 
 function Login() {
@@ -21,15 +22,19 @@ function Login() {
             passoword: password
         }
         axios.post(loginURL, requestBody, requestConfig).then(response => {
+            console.log(response.data);
             
-        })
+        }).catch(error => {
+            console.log(error);
+            setErrorMessage('Invalid username or password');
+        });
     } 
     
     return (
         <div>
            <form onSubmit={submitHandler} >
-            username: <input type="text" value={username} onChange={event => setUsername(event.target.value)} <br/>
-            password: <input type="password" value={password} onChange={event => setPassword(event.target.value)} <br/>
+            username: <input type="text" value={username} onChange={event => setUsername(event.target.value)} /> <br/>
+            password: <input type="password" value={password} onChange={event => setPassword(event.target.value)} /> <br/>
             <input type="submit" value="login" />
             </form>
         {errorMessage && <p className='message'>{errorMessage}</p>}
