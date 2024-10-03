@@ -18,9 +18,14 @@ function verifyToken(username, token) {
     }
     if (response.username !== username) {
       return {
-        verified: true,
-        message: 'verified'
+        verified: false,
+        message: 'invalid user'
       }
+    }
+
+    return {
+      verified: true,
+      message:'verified'
     }
   });
 }
