@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import axios from 'axios';
+
+const registerURL = '';
 
 
 function Register() {
@@ -13,6 +16,26 @@ function Register() {
         if (username.trim() === '' || email.trim() === '' || name.trim() === '' || password.trim() === '') {
             setMessage('All fields are required!')
         }
+
+        const requestConfig = {
+            headers: {
+                'x-api-key': '',
+            }
+        }
+
+        const requestBody = {
+            username: username,
+            email: email,
+            name: name,
+            password: password
+        }
+        axios.post(registerURL, requestBody, requestConfig).then(response => setMessage('Registration Successful')).catch(error => {
+            if(error.response.status === 401){
+                setMessage(error.response.data.message);
+            } else {
+                setMessage('sorry... the backend server is down, please try again later!')
+            }
+        })
     }
     
     return (
