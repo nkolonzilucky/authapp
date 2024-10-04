@@ -1,5 +1,5 @@
 import React from "react";
-import { getUser, resetUserSession } from '/services/authServices';
+import { getUser, resetUserSession } from './services/authServices';
 
 function PremiumContent(props) {
     const user = getUser();
