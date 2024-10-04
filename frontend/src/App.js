@@ -6,6 +6,8 @@ import PremiumContent from './PremiumContent';
 import PublicRoutes from './routes/PublicRoutes';
 import PrivateRoutes from './routes/PrivateRoutes';
 
+const verifyTokenAPIURL = ''
+
 function App() {
   return (
     <div className="App">
