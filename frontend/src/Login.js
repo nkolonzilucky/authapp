@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import { setUserSession } from './services/authServices';
 const loginURL = '';
 
-function Login() {
+function Login(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState(null);
@@ -22,7 +23,8 @@ function Login() {
             passoword: password
         }
         axios.post(loginURL, requestBody, requestConfig).then(response => {
-            console.log(response.data);
+            setUserSession(response.data.user, response.data.token);
+            props.history.push('/premium-content');
             
         }).catch(error => {
             console.log(error);
